@@ -3,5 +3,132 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "spark-chat-widget": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/spark-chat-widget",
+      "sourceRoot": "projects/spark-chat-widget/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/spark-chat-widget",
+            "index": "projects/spark-chat-widget/src/index.html",
+            "main": "projects/spark-chat-widget/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/spark-chat-widget/tsconfig.app.json",
+            "assets": [
+              "projects/spark-chat-widget/src/favicon.ico",
+              "projects/spark-chat-widget/src/assets"
+            ],
+            "styles": [
+              "projects/spark-chat-widget/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "spark-chat-widget:build:production"
+            },
+            "development": {
+              "browserTarget": "spark-chat-widget:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "spark-chat-widget:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/spark-chat-widget/tsconfig.spec.json",
+            "assets": [
+              "projects/spark-chat-widget/src/favicon.ico",
+              "projects/spark-chat-widget/src/assets"
+            ],
+            "styles": [
+              "projects/spark-chat-widget/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "sparkout-chat-widget": {
+      "projectType": "library",
+      "root": "projects/sparkout-chat-widget",
+      "sourceRoot": "projects/sparkout-chat-widget/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/sparkout-chat-widget/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/sparkout-chat-widget/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/sparkout-chat-widget/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/sparkout-chat-widget/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "b9d8725f-c2a5-409c-9441-a4d9e489059f"
   }
 }
